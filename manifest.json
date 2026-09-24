@@ -1,9 +1,9 @@
 {
-    "version":  "0.3.4",
+    "version":  "0.3.5",
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "7c1a5216a326dba7845028bf1b96f2efc96085bd96f4de897508f43d8ec33d98",
+                      "sha256":  "b339fffa2a02b3362efffcb81f4289fbf3221d9367bc00abae06c41858d0adce",
                       "size":  501248
                   },
                   {
@@ -63,8 +63,8 @@
                   },
                   {
                       "path":  "data/web/setup.css",
-                      "sha256":  "f06de01d382c9bdbca47310e0bfd71695836ae2a22a97683e4c82ecbcdb78e16",
-                      "size":  17168
+                      "sha256":  "7b35b50a25635bf33dd78d08823afe9b55e74b8330de3e742bf72c127e4bc6cd",
+                      "size":  17021
                   },
                   {
                       "path":  "data/web/setup.html",
@@ -73,8 +73,8 @@
                   },
                   {
                       "path":  "data/web/setup.js",
-                      "sha256":  "fb05870120f64d0c3d1ec57b375b4f767936af5575839bbe8b488f2dbb5d0e58",
-                      "size":  22876
+                      "sha256":  "bd230b886bb341a51a71426aa96e82953ac8cabdf94f16a5abb17a3fc9e3e249",
+                      "size":  22935
                   },
                   {
                       "path":  "data/web/style.css",
