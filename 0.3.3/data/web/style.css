@@ -1,0 +1,947 @@
+/* Misure e colori della chat di Twitch nel tema scuro.
+   Riferimento: riga messaggio 13px/20px con 5px 20px di spaziatura, sfondo #18181b,
+   testo #efeff1, grigio #adadb8, viola #9147ff. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+:root {
+  --bg: #18181b;
+  --bg-alt: #1f1f23;
+  --border: #2f2f35;
+  --text: #efeff1;
+  --muted: #adadb8;
+  --accent: #9147ff;
+  --accent-hover: #772ce8;
+  --input-border: #3a3a42;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI Variable Text", "Segoe UI", Roobert, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.chat-room { display: flex; flex-direction: column; height: 100%; position: relative; }
+
+/* elenco messaggi */
+.chat-scrollable-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a42 transparent;
+}
+.chat-scrollable-area::-webkit-scrollbar { width: 8px; }
+.chat-scrollable-area::-webkit-scrollbar-thumb { background: #3a3a42; border-radius: 4px; }
+.chat-scrollable-area::-webkit-scrollbar-track { background: transparent; }
+
+.chat-line {
+  position: relative;
+  padding: 4px 16px;
+  line-height: 1.57;
+  word-wrap: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.chat-line:hover { background: rgba(255, 255, 255, 0.05); }
+
+.chat-line__timestamp { color: var(--muted); margin-right: 4px; }
+
+.chat-line__source {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+  position: relative;
+  top: -1px;
+}
+.chat-line__source svg { width: 16px; height: 16px; display: block; }
+.chat-line__source.twitch { color: #9146ff; }
+.chat-line__source.tiktok { color: #ffffff; }
+
+.chat-badge {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 3px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  border-radius: 2px;
+}
+
+.chat-author { font-weight: 700; }
+.chat-line__message { color: var(--text); }
+.chat-line.is-action .chat-line__message { font-style: italic; }
+
+.chat-emote {
+  height: 28px;
+  vertical-align: middle;
+  margin: -5px 0;
+}
+
+/* "Rispondendo a @nome: messaggio" come su Twitch (ReplyLine): fumetto 17px, testo alt-2 su una riga */
+.chat-line__reply { display: flex; align-items: center; color: #adadb8; font-size: 14px; line-height: 20px; margin-bottom: 2px; }
+.chat-line__reply svg { width: 17px; height: 17px; flex: none; }
+.chat-line__reply span { padding-left: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.chat-line__reply .reply-line--mentioned { background: rgba(255, 255, 255, 0.13); border-radius: 2px; padding: 1px 2px; color: var(--text); }
+
+/* barra di scrittura */
+.chat-input {
+  border-top: 1px solid var(--border);
+  padding: 10px;
+  position: relative; /* ancora le finestrelle che si aprono sopra la casella */
+}
+
+/* Tutto quello che si apre sopra la casella sta in una pila sola, così i pannelli
+   non si coprono a vicenda: l'avviso in fondo, il pannello aperto sopra. */
+.above-input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  pointer-events: none;
+}
+.above-input > * {
+  pointer-events: auto;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.5);
+  min-height: 0;
+}
+.chat-input__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-alt);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border-color 0.1s ease-in;
+}
+.chat-input__box:focus-within { border-color: var(--accent); background: var(--bg); }
+.chat-input__box input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  padding: 10px 10px;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.chat-input__box input::placeholder { color: var(--muted); }
+.chat-input__box input:disabled { color: var(--muted); }
+
+.icon-in-box {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+}
+.icon-in-box svg { width: 20px; height: 20px; }
+.icon-in-box:hover { color: var(--text); }
+
+.chat-input__buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.spacer { flex: 1; }
+
+.icon-button {
+  background: none;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.icon-button svg { width: 20px; height: 20px; }
+.icon-button:hover { background: rgba(255, 255, 255, 0.1); color: var(--text); }
+
+.dots { display: flex; gap: 6px; align-items: center; }
+.dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #53535f;
+  display: block;
+}
+.dots i[data-state="connected"] { background: #00f593; }
+.dots i[data-state="connecting"] { background: #ffb800; }
+.dots i[data-state="retry"], .dots i[data-state="error"] { background: #ff7a45; }
+
+.chat-button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 9999px;
+  padding: 0 10px;
+  min-width: 60px;
+  height: 32px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.chat-button:hover { background: var(--accent-hover); }
+.chat-button:disabled { background: rgba(255, 255, 255, 0.1); color: var(--muted); cursor: default; }
+.chat-button.wide { width: 100%; margin-top: 6px; }
+
+/* pausa scorrimento, come la barra di Twitch */
+.resume {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 92px;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--text);
+  border: 0;
+  border-radius: 4px;
+  padding: 6px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* impostazioni */
+.settings {
+  padding: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.settings label { display: block; color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+.settings .field input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  background: var(--bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 8px;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.settings .field input:focus { outline: none; border-color: var(--accent); }
+.settings hr { border: 0; border-top: 1px solid var(--border); margin: 12px 0; }
+.settings p { margin: 6px 0; font-size: 12px; color: var(--muted); }
+.settings .muted { color: var(--muted); }
+
+.filters { display: flex; gap: 6px; margin-bottom: 8px; }
+.filter {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  border: 0;
+  border-radius: 4px;
+  padding: 5px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filter:hover { background: rgba(255, 255, 255, 0.16); color: var(--text); }
+.filter.is-active { background: var(--accent); color: #fff; }
+
+.context-menu {
+  position: fixed;
+  z-index: 10;
+  background: #1f1f23;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+}
+.context-menu button {
+  background: none;
+  border: 0;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.context-menu button:hover { background: rgba(255, 255, 255, 0.1); }
+
+
+
+/* suggerimenti dei comandi con la barra */
+.commands {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 4px;
+}
+.commands button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.commands button:hover, .commands button.is-active { background: rgba(255, 255, 255, 0.1); }
+.commands { padding: 4px 8px 8px; }
+.commands button { padding: 8px 10px; border-radius: 4px; line-height: 18px; }
+.commands b { color: var(--text); font-weight: 700; font-size: 14px; }
+.commands .command-args { color: var(--text); font-size: 14px; }
+.commands small { display: block; color: var(--muted); font-size: 13px; line-height: 18px; margin-top: 1px; }
+.commands button.is-active, .commands button:hover { background: rgba(255, 255, 255, 0.13); }
+
+/* menù impostazioni in stile Twitch */
+.settings__title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+.settings__section {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 14px 0 6px;
+}
+.settings .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--text);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.settings .row select {
+  background: var(--bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  color: var(--text);
+  font: inherit;
+  padding: 4px 6px;
+}
+
+
+/* opzioni di aspetto applicate all'elenco */
+.chat-scrollable-area.no-time .chat-line__timestamp { display: none; }
+.chat-scrollable-area.alternate .chat-line:nth-child(even) { background: rgba(255, 255, 255, 0.03); }
+/* messaggi eliminati come su Twitch (.chat-line__message--deleted): testo in alt-2;
+   "Dettagliata" = barrato + nota "(Eliminato da X)"; "Breve" = solo "<messaggio eliminato>" cliccabile */
+.chat-scrollable-area.deleted-hide .chat-line.is-deleted { display: none; }
+.chat-line.is-deleted .chat-line__message,
+.chat-line.is-deleted .deleted-note,
+.chat-line.is-deleted .deleted-brief { color: #adadb8; }
+.chat-line.is-deleted .deleted-note { padding-left: 5px; }
+.chat-line.is-deleted .deleted-brief { display: none; cursor: pointer; }
+.chat-scrollable-area.deleted-detail .chat-line.is-deleted .chat-line__message { text-decoration: line-through; }
+.chat-scrollable-area.deleted-detail .chat-line.is-deleted .chat-line__message img { opacity: 0.5; }
+.chat-scrollable-area.deleted-brief .chat-line.is-deleted:not(.show-deleted) .chat-line__message,
+.chat-scrollable-area.deleted-brief .chat-line.is-deleted .deleted-note { display: none; }
+.chat-scrollable-area.deleted-brief .chat-line.is-deleted:not(.show-deleted) .deleted-brief { display: inline; }
+
+/* intestazione e interruttori del menù impostazioni, come su Twitch */
+.settings__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.settings__head .round {
+  position: absolute;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.settings__head .round:hover { background: rgba(255, 255, 255, 0.2); }
+
+.settings .row--button {
+  width: 100%;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+.settings .link { color: var(--accent); }
+.settings .field { display: block; color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+
+
+
+/* messaggi speciali, con le stesse bande colorate di Twitch */
+.chat-line.is-mention { background: rgba(255, 71, 71, 0.16); box-shadow: inset 4px 0 0 #eb0400; }
+.chat-line.is-first { background: rgba(145, 71, 255, 0.14); box-shadow: inset 4px 0 0 var(--accent); }
+.chat-line__tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.chat-line.is-mention .chat-line__tag { color: #ff7a45; }
+
+/* suggerimenti dei nomi quando scrivi @ */
+.mentions { max-height: 220px; overflow-y: auto; padding: 4px; }
+.mentions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.mentions button:hover, .mentions button.is-active { background: rgba(255, 255, 255, 0.1); }
+
+/* eventi del canale come li disegna Twitch: card grigia con bordo viola, icona a sinistra,
+   nome in grassetto sulla prima riga, frase sotto con le parti in grassetto */
+.chat-line.is-event {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 10px;
+  align-items: start;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 4px 0 0 var(--accent);
+  padding: 5px 20px 5px 16px;
+  margin: 5px 0;
+}
+.chat-line.is-event .event-icon { width: 24px; height: 24px; color: #adadb8; grid-row: 1 / span 3; }
+.chat-line.is-event .event-icon svg { width: 24px; height: 24px; display: block; }
+.chat-line.is-event .event-icon.prime { color: var(--accent); }
+.chat-line.is-event .event-name { grid-column: 2; font-weight: 700; color: var(--text); }
+.chat-line.is-event .chat-line__event { grid-column: 2; color: #dedee3; }
+.chat-line.is-event .chat-line__event b { font-weight: 700; color: var(--text); }
+.chat-line.is-event .chat-line__event .plan { color: #bf94ff; text-decoration: underline; }
+.chat-line.is-event .event-body { grid-column: 2; margin-top: 4px; }
+.chat-line.is-event .reply-button { display: none !important; }
+/* riga "X ha regalato un abbonamento a Y": icona centrata, nome in linea */
+.chat-line.is-event.is-inline { align-items: center; }
+.chat-line.is-event.is-inline .event-icon { grid-row: auto; }
+
+/* like TikTok: riga leggera, non una card, perche' arrivano a raffica */
+.chat-line.is-event.is-like { background: none; box-shadow: none; margin: 0; padding: 3px 20px 3px 16px; grid-template-columns: 18px 1fr; column-gap: 8px; }
+.chat-line.is-event.is-like .event-icon, .chat-line.is-event.is-like .event-icon svg { width: 18px; height: 18px; color: #fe2c55; }
+.chat-line.is-event.is-like .chat-line__event { color: #adadb8; }
+.chat-line.is-cheer { background: rgba(0, 173, 255, 0.14); box-shadow: inset 4px 0 0 #00adff; }
+.chat-line__bits { color: #00adff; font-weight: 700; margin-left: 4px; }
+.chat-line.is-announcement { box-shadow: inset 4px 0 0 #00f593; background: rgba(0, 245, 147, 0.12); }
+.chat-line.is-announcement.color-BLUE { box-shadow: inset 4px 0 0 #1e90ff; background: rgba(30, 144, 255, 0.12); }
+.chat-line.is-announcement.color-ORANGE { box-shadow: inset 4px 0 0 #ff7a45; background: rgba(255, 122, 69, 0.12); }
+.chat-line.is-announcement.color-PURPLE { box-shadow: inset 4px 0 0 var(--accent); background: rgba(145, 71, 255, 0.14); }
+
+/* casella di scrittura con le emote vere dentro, come su Twitch */
+#text {
+  flex: 1;
+  min-height: 21px;
+  max-height: 120px;
+  overflow-y: auto;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 21px;
+  padding: 10px 10px;
+  -webkit-user-select: text;
+  user-select: text;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+#text:empty::before { content: attr(data-placeholder); color: var(--muted); }
+#text.is-disabled { color: var(--muted); }
+#text img { height: 24px; vertical-align: middle; margin: -4px 2px; }
+
+/* selettore emote in stile Twitch */
+.emote-panel { padding: 0; max-height: 360px; display: flex; flex-direction: column; }
+.emote-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+}
+.emote-search__icon { width: 18px; height: 18px; color: var(--muted); position: absolute; margin-left: 10px; }
+.emote-search input {
+  flex: 1;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text);
+  font: inherit;
+  padding: 7px 8px 7px 32px;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.emote-search input:focus { outline: none; }
+.emote-search button {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+.emote-search button:hover { color: var(--text); }
+
+.emote-body { display: flex; min-height: 0; flex: 1; }
+.emote-grid { flex: 1; overflow-y: auto; padding: 0 6px 8px; }
+.emote-grid h4 {
+  margin: 10px 4px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.emote-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); gap: 2px; }
+.emote-cell {
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 2px;
+}
+.emote-cell:hover { background: rgba(255, 255, 255, 0.12); }
+.emote-cell img { max-width: 28px; max-height: 28px; }
+
+.emote-rail {
+  width: 40px;
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+}
+.emote-rail button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+}
+.emote-rail button:hover { background: rgba(255, 255, 255, 0.22); }
+.emote-rail img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+
+/* interruttore: il pallino va su uno <span>, perché Chromium non disegna
+   gli pseudo-elementi dentro un <input> */
+.settings .switch-input { display: none; }
+.switch {
+  width: 38px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex: none;
+  display: block;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s;
+}
+.switch-input:checked + .switch { background: var(--accent); }
+.switch-input:checked + .switch::after { transform: translateX(16px); }
+
+/* il menù non deve mai scorrere in orizzontale */
+.settings { overflow-x: hidden; }
+.settings .row { min-width: 0; }
+.settings .row > span:first-child { flex: 1; min-width: 0; }
+.settings select { max-width: 55%; }
+
+.emote-panel .muted { margin: 0; padding: 0 10px 8px; font-size: 11px; color: var(--muted); }
+
+/* barre di scorrimento scure ovunque, come su Twitch */
+* { scrollbar-width: thin; scrollbar-color: #3a3a42 transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a42; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #4a4a52; }
+::-webkit-scrollbar-button { display: none; }
+
+/* avviso permessi mancanti, sopra la casella */
+.above-input > .reauth {
+  background: #3a2a00;
+  color: #ffd88a;
+  border-top: 1px solid #5a4300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.reauth button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  flex: none;
+}
+
+/* intestazione della chat, come il pannello Twitch di OBS */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 40px;
+  flex: none;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.chat-header .icon-button { position: absolute; right: 8px; }
+
+
+
+/* riga di sistema, come il benvenuto di Twitch */
+.chat-line.is-system { padding: 4px 16px; }
+.chat-line.is-system .chat-line__message { color: #d3d3d9; }
+.chat-line.is-modaction .chat-line__message { color: var(--muted); }
+.chat-line.is-modaction b { color: var(--text); }
+
+/* messaggi trattenuti da AutoMod */
+.chat-line.is-held { background: rgba(255, 184, 0, 0.12); box-shadow: inset 4px 0 0 #ffb800; }
+.chat-line.is-held .chat-line__tag { color: #ffb800; }
+.held-actions { display: flex; gap: 6px; margin-top: 6px; }
+.held-actions button {
+  border: 0;
+  border-radius: 9999px;
+  height: 28px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.held-actions .allow { background: #00f593; color: #0e0e10; }
+.held-actions .deny { background: rgba(255, 255, 255, 0.15); color: var(--text); }
+.held-actions button:disabled { opacity: 0.5; cursor: default; }
+.chat-line.is-held.is-resolved { opacity: 0.6; }
+.chat-scrollable-area.hide-automod-cat .chat-line.is-held[data-reason="automod"][data-standard="no"] { display: none; }
+.chat-scrollable-area.hide-automod-std .chat-line.is-held[data-reason="automod"][data-standard="yes"] { display: none; }
+.chat-scrollable-area.hide-automod-terms .chat-line.is-held[data-reason="blocked_term"] { display: none; }
+.chat-scrollable-area.hide-automod-links .chat-line.is-held[data-reason="blocked_link"] { display: none; }
+
+/* utenti nella chat: pannello a tutta altezza sopra i messaggi, come su Twitch */
+.chat-body { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.viewer-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+.viewer-list__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  flex: none;
+  background: var(--bg-alt);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.viewer-list__head .icon-button { position: absolute; left: 8px; font-size: 20px; }
+.viewer-list__filter {
+  position: relative;
+  padding: 10px 16px;
+  flex: none;
+}
+.viewer-list__filter svg {
+  position: absolute;
+  left: 26px;
+  top: 21px;
+  width: 18px;
+  height: 18px;
+  color: var(--text);
+}
+.viewer-list__filter input {
+  width: 100%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  padding: 7px 8px 7px 34px;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.viewer-list__filter input:focus { outline: none; }
+.viewer-list__body { flex: 1; overflow-y: auto; padding: 0 16px 16px; }
+.viewer-list__body h4 { margin: 14px 0 4px; font-size: 14px; font-weight: 400; color: var(--text); }
+.viewer-list__body div { padding: 2px 0; font-size: 14px; line-height: 22px; color: #bf94ff; }
+.viewer-list__body .empty { color: var(--muted); }
+
+/* strumenti moderatore in linea: ban, timeout, elimina — come su Twitch con i mod tools attivi */
+.mod-icons { display: inline-flex; vertical-align: middle; margin: -2px 5px 0 0; color: #adadb8; }
+.mod-icons button {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+}
+.mod-icons button:hover { color: var(--text); }
+.mod-icons svg { width: 16px; height: 16px; display: block; }
+.chat-scrollable-area.no-modicons .mod-icons { display: none; }
+
+/* pulsante Rispondi che compare passando sopra al messaggio, come su Twitch */
+.reply-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #3d3d40;
+  color: var(--text);
+  cursor: pointer;
+  display: none;
+  place-items: center;
+}
+.reply-button svg { width: 20px; height: 20px; }
+.chat-line:hover .reply-button { display: grid; }
+.reply-button:hover { background: #4b4b50; }
+/* fumetto "Clicca per rispondere" come quello di Twitch: bianco, sopra al pulsante */
+.reply-button::after {
+  content: "Click to reply";
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  color: #0e0e10;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: none;
+}
+.reply-button::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  right: 9px;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  border-bottom: 0;
+  display: none;
+}
+.reply-button:hover::after, .reply-button:hover::before { display: block; }
+
+/* barra di risposta come su Twitch: intestazione "Risposta a @nome:" con la X, il messaggio citato, poi la casella */
+.reply-bar { background: #1f1f23; border-radius: 6px 6px 0 0; padding: 6px 6px 4px 10px; }
+.reply-bar__head { display: flex; align-items: center; gap: 6px; color: var(--text); font-size: 13px; line-height: 20px; }
+.reply-bar__head > svg { width: 20px; height: 20px; flex: none; }
+.reply-bar__head b { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.reply-bar__head .icon-button { width: 30px; height: 30px; }
+.reply-bar__quote { padding: 4px 6px 4px 26px; font-size: 13px; line-height: 20px; overflow: hidden; }
+.reply-bar__quote .chat-line__message { display: inline; }
+.chat-input.is-replying .chat-input__box { border-top-left-radius: 0; border-top-right-radius: 0; }
+
+/* le menzioni sono in grassetto; quella verso di te ha anche lo sfondo */
+.chat-line__mention { font-weight: 700; }
+.chat-line__mention.is-me { background: rgba(255, 255, 255, 0.13); border-radius: 2px; padding: 0 2px; }
+
+.viewer-list__head .icon-button svg, .emote-search button svg { width: 20px; height: 20px; }
+
+/* scheda utente come su Twitch (viewer-card): si apre sopra la chat, larga quanto la chat */
+.chat-author { cursor: pointer; }
+.viewer-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  max-height: 100%;
+  overflow: auto;
+  background: #18181b;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  line-height: 18px;
+}
+.viewer-card[hidden] { display: none; }
+.viewer-card__header {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding: 10px 10px 10px;
+  color: #fff;
+  background: #1f1f23 center / cover;
+}
+.viewer-card__header::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
+.viewer-card__header > * { position: relative; }
+.viewer-card__avatar { width: 50px; height: 50px; border-radius: 50%; flex: none; background: #0e0e10; }
+.viewer-card__info { min-width: 0; flex: 1; padding-right: 60px; }
+.viewer-card__name { font-size: 16px; font-weight: 600; line-height: 20px; text-decoration: underline; cursor: pointer; word-break: break-all; }
+.viewer-card__row { display: flex; align-items: flex-end; gap: 5px; margin-top: 4px; }
+.viewer-card__row svg { width: 20px; height: 20px; flex: none; }
+.viewer-card__status { display: inline-block; margin-top: 6px; padding: 0 6px; border-radius: 4px; background: #eb0400; color: #fff; font-size: 12px; font-weight: 600; }
+.viewer-card__tools { position: absolute; top: 5px; right: 5px; display: flex; gap: 2px; }
+.viewer-card__tools .icon-button { width: 30px; height: 30px; color: #fff; }
+.viewer-card__tools .icon-button:hover { background: rgba(255, 255, 255, 0.2); }
+.viewer-card__section { padding: 10px; }
+.viewer-card__title { margin: 0; font-size: 18px; font-weight: 600; line-height: 22px; }
+.viewer-card__badges { display: flex; flex-wrap: wrap; }
+.viewer-card__badge { width: 30px; height: 30px; padding: 3px; margin: 5px 5px 0 0; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 4px; box-sizing: border-box; }
+.viewer-card__badge img { width: 22px; height: 22px; display: block; }
+.viewer-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px; }
+.viewer-card__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 9000px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.viewer-card__pill:hover { background: #772ce8; }
+.viewer-card__pill svg { width: 20px; height: 20px; }
+.viewer-card__actions .icon-button { width: 30px; height: 30px; }
+.viewer-card__tabs { display: flex; border-bottom: 1px solid var(--border); }
+.viewer-card__tab { flex: 1; min-width: 0; padding: 6px 6px; border: 0; background: none; color: var(--muted); font: inherit; font-size: 13px; text-align: left; cursor: pointer; border-radius: 4px 4px 0 0; }
+.viewer-card__tab b { display: block; color: #bf94ff; font-weight: 600; font-size: 14px; }
+.viewer-card__tab span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.viewer-card__tab:hover { background: rgba(255, 255, 255, 0.08); }
+.viewer-card__tab.is-active { box-shadow: inset 0 -3px 0 #a970ff; color: var(--text); }
+.viewer-card__logs { max-height: 250px; overflow: auto; padding: 5px 0; }
+.viewer-card__logs .chat-line { padding: 4px 10px; }
+.viewer-card__logs .chat-line.is-deleted .chat-line__message { text-decoration: line-through; }
+.viewer-card__empty { color: var(--muted); padding: 10px; }
+.viewer-card__entry { padding: 4px 10px; }
+.viewer-card__entry small { color: var(--muted); }
+.viewer-card__comment { display: flex; gap: 6px; padding: 10px; }
+.viewer-card__comment input { flex: 1; min-width: 0; padding: 5px 8px; border: 1px solid var(--border); border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text); font: inherit; }
+.viewer-card__menu { position: absolute; z-index: 7; min-width: 180px; padding: 4px 0; background: #1f1f23; border-radius: 4px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); }
+.viewer-card__menu button { display: block; width: 100%; padding: 6px 10px; border: 0; background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.viewer-card__menu button:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* riga di stato di Twitch (chat-line__status): "La chat è stata cancellata da un moderatore" */
+.chat-line.chat-line__status { color: #adadb8; padding: 4px 16px; }
+
+/* "Discussione": messaggio iniziale, risposte con la barra grigia a sinistra (chat-replies-border), poi
+   "In risposta a @nome • Annulla" (chat-replying-to-container) e la menzione grigia nella casella */
+.reply-bar__thread { max-height: 160px; overflow: auto; margin: 4px 0 0 10px; padding-left: 8px; border-left: 4px solid #53535f; }
+.reply-bar__thread .chat-line, .reply-bar__quote .chat-line { padding: 3px 4px; line-height: 20px; font-size: 13px; }
+.reply-bar__footer { display: flex; align-items: center; gap: 4px; margin: 6px -6px 0 -10px; padding: 6px 14px 2px; border-top: 1px solid var(--border); font-size: 12px; line-height: 18px; }
+.reply-bar__footer b { font-weight: 600; }
+.reply-bar__footer .dot { color: #adadb8; margin: 0 4px; }
+.text-button { background: none; border: 0; padding: 0; color: #bf94ff; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.text-button:hover { text-decoration: underline; }
+.reply-chip { color: #adadb8; }
+.chat-line__reply { cursor: pointer; }
+
+/* configurazione guidata: occupa tutto il pannello finché non è finita */
+.setup-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 40; background: var(--bg); }
+.setup-frame[hidden] { display: none; }
+
+/* dimensione della chat (cursore nelle impostazioni): ogni riga scala per intero, emote e badge compresi */
+.chat-scrollable-area .chat-line { zoom: var(--chat-zoom, 1); }
+.settings .row--range input[type="range"] { flex: 1; min-width: 70px; margin: 0 10px; accent-color: #a970ff; }
+.settings .row--range output { width: 40px; text-align: right; color: #adadb8; font-variant-numeric: tabular-nums; }
+
+/* who joins the TikTok LIVE: one pill at the bottom of the chat, replaced by the next joiner */
+.join-ticker {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  max-width: calc(100% - 20px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px 4px 8px;
+  border-radius: 999px;
+  background: rgba(24, 24, 27, 0.92);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  color: #adadb8;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 2;
+}
+.join-ticker.is-on { opacity: 1; transform: none; animation: join-in 0.3s ease-out; }
+.join-ticker b { color: var(--text); font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.join-ticker .chat-line__source { margin-right: 0; top: 0; }
+@keyframes join-in { from { opacity: 0.3; transform: translateY(4px); } }

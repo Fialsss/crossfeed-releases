@@ -1,10 +1,10 @@
 {
-    "version":  "0.3.2",
+    "version":  "0.3.3",
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "0ec5bbf4a1a0f000da9cafa4646523ca325165f7332915254745577b1ee53cb0",
-                      "size":  499200
+                      "sha256":  "861ba4d9ed1aea51d3e8802e46abea0192a3e03df82046a55c4355d79947a965",
+                      "size":  500224
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -13,8 +13,8 @@
                   },
                   {
                       "path":  "data/web/app.js",
-                      "sha256":  "ca1e2453fd27f5aa365db1269e7af063c21b33d7d94d4381121ef0d9fed0c9ac",
-                      "size":  65941
+                      "sha256":  "7fb5fcd8e9bd2586195924deb72dd52e2ca83c23231730150c8c22c7f69e0147",
+                      "size":  67219
                   },
                   {
                       "path":  "data/web/emotes.js",
@@ -37,9 +37,24 @@
                       "size":  34068
                   },
                   {
+                      "path":  "data/web/fonts-OFL.txt",
+                      "sha256":  "b6b056f62ab7b90795b9328d8f3774c676f89876d84daf487f3632f60459da81",
+                      "size":  4955
+                  },
+                  {
                       "path":  "data/web/index.html",
-                      "sha256":  "89b3e6b8c882dd8c65646be37f4f081f2f261cf35f11289bbab56ae7ee423f05",
-                      "size":  15650
+                      "sha256":  "25c45422442b2f3d4900926a9575f20e9c95d6e69018ecca106dfde554cd64f0",
+                      "size":  15721
+                  },
+                  {
+                      "path":  "data/web/inter.woff2",
+                      "sha256":  "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+                      "size":  48256
+                  },
+                  {
+                      "path":  "data/web/jetbrains-mono.woff2",
+                      "sha256":  "cb182feeed4d798ff6961d3c79f7026279448fca0676438aaecb21f3fc39553a",
+                      "size":  21832
                   },
                   {
                       "path":  "data/web/oauth.html",
@@ -48,23 +63,23 @@
                   },
                   {
                       "path":  "data/web/setup.css",
-                      "sha256":  "274196223c23657de0e439fa611f9d7accf0760dc9f6ac2958ee122fe7f1c534",
-                      "size":  19037
+                      "sha256":  "f06de01d382c9bdbca47310e0bfd71695836ae2a22a97683e4c82ecbcdb78e16",
+                      "size":  17168
                   },
                   {
                       "path":  "data/web/setup.html",
-                      "sha256":  "b65ee093f08f37a9c0120689ff7c1a336b84eb6d6fb601a4f13e69a8e77dd4a0",
-                      "size":  5286
+                      "sha256":  "35db51b189f6413f23b47b3a38ffd9c46b45e378d6c560afb5bd0ce0a338caa4",
+                      "size":  4898
                   },
                   {
                       "path":  "data/web/setup.js",
-                      "sha256":  "30416cbefad9bf06db0e8c2c3007fcbfef4f5711cdb460b64696d630ca003f72",
-                      "size":  22465
+                      "sha256":  "fb05870120f64d0c3d1ec57b375b4f767936af5575839bbe8b488f2dbb5d0e58",
+                      "size":  22876
                   },
                   {
                       "path":  "data/web/style.css",
-                      "sha256":  "80d854c09ca8edbee4841dc85439e242af1d4875ae9c59a479253ed593eb3a1e",
-                      "size":  32072
+                      "sha256":  "b4ceba5136600a45e6756dd40cdadb847642598311a99a577c78a1090a0b8541",
+                      "size":  32993
                   }
               ]
 }
