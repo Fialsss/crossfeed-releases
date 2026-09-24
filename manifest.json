@@ -1,10 +1,10 @@
 {
-    "version":  "0.3.5",
+    "version":  "0.3.6",
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "b339fffa2a02b3362efffcb81f4289fbf3221d9367bc00abae06c41858d0adce",
-                      "size":  501248
+                      "sha256":  "8430cbe94dd2115ef1cc181facb0f9a51fcbee0375509bc9c7e6d2b2f3d4e816",
+                      "size":  501760
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -13,8 +13,8 @@
                   },
                   {
                       "path":  "data/web/app.js",
-                      "sha256":  "b05d8e7b5a9405841e5eaf0aa49125a9ec5710ad892db4b3e751e68f83d1739b",
-                      "size":  67492
+                      "sha256":  "d4fa45553e3dcf32afda7fee50951d1c6f766b148eb9c49ea180f1c4323d5f28",
+                      "size":  71101
                   },
                   {
                       "path":  "data/web/emotes.js",
@@ -43,8 +43,8 @@
                   },
                   {
                       "path":  "data/web/index.html",
-                      "sha256":  "89b3e6b8c882dd8c65646be37f4f081f2f261cf35f11289bbab56ae7ee423f05",
-                      "size":  15650
+                      "sha256":  "f22f7ea1265233334e7877add39786fa7ca6816134dfe0e9fe2563a7e80f3fa9",
+                      "size":  15920
                   },
                   {
                       "path":  "data/web/inter.woff2",
@@ -78,8 +78,8 @@
                   },
                   {
                       "path":  "data/web/style.css",
-                      "sha256":  "d3d05de87926ef36a48e5ae06db6aa9a9486136b7de6f2290f0d5b35a8d39191",
-                      "size":  32623
+                      "sha256":  "5369003cd5eb34aba3052db007ee264fe0f86c88ce0837fc307ad6b098d9e1b2",
+                      "size":  33136
                   }
               ]
 }
