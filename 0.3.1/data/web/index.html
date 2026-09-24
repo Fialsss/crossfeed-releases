@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crossfeed Chat</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H7.714V1.714h12.857z"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path fill="currentColor" d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/><path fill="currentColor" fill-rule="evenodd" d="M10.9 1h2.2v.228a3.362 3.362 0 0 0 5.739 2.378L19 3.444l1.556 1.555-.161.162a3.362 3.362 0 0 0 2.377 5.739H23v2.2h-.228a3.362 3.362 0 0 0-2.377 5.74l.161.16L19 20.557l-.16-.161a3.362 3.362 0 0 0-5.74 2.377V23h-2.2v-.228a3.362 3.362 0 0 0-5.74-2.377l-.16.16L3.444 19l.161-.16a3.362 3.362 0 0 0-2.377-5.74H1v-2.2h.228a3.362 3.362 0 0 0 2.377-5.739L3.445 5 5 3.444l.161.161A3.362 3.362 0 0 0 10.9 1.228V1ZM4.929 12 7 17l5 2.07L17 17l2.071-5L17 7l-5-2.071-5 2.07-2.071 5Z"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><path fill="currentColor" d="M8 2a5 5 0 0 0-1 9.9v.1a1 1 0 0 1-1 1H5a3 3 0 0 0-3 3v6h2v-6a1 1 0 0 1 1-1h1a2.99 2.99 0 0 0 2-.764A2.99 2.99 0 0 0 10 15h1a1 1 0 0 1 1 1v6h2v-6a3 3 0 0 0-3-3h-1a1 1 0 0 1-1-1v-.1A5.002 5.002 0 0 0 8 2ZM5 7a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"/><path fill="currentColor" d="M22 11a4.002 4.002 0 0 1-2.956 3.862A1.5 1.5 0 0 0 20.5 16a1.5 1.5 0 0 1 1.5 1.5V22h-5v-7.126A4.002 4.002 0 0 1 18 7a4 4 0 0 1 4 4Z"/></symbol>
+  <symbol id="i-smile" viewBox="0 0 24 24"><path fill="currentColor" d="M12 19a3 3 0 0 0 3-3H9a3 3 0 0 0 3 3Zm-6-6.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/><path fill="currentColor" fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12Zm11 9a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="currentColor" d="M6.414 5 5 6.414l5.588 5.588L5 17.59l1.414 1.414 5.588-5.588 5.588 5.588 1.414-1.414-5.588-5.588 5.588-5.588L17.59 5l-5.588 5.588L6.414 5Z"/></symbol>
+  <symbol id="i-reply" viewBox="0 0 24 24"><path fill="currentColor" d="M7.828 12.207 11.621 16l-1.414 1.414L4 11.207 10.207 5l1.414 1.414-3.793 3.793h5.586a7 7 0 0 1 7 7v2h-2v-2a5 5 0 0 0-5-5H7.828Z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5 5.192V7H2v8h1v7h18v-7h1V7h-3V5.192a3.192 3.192 0 0 0-5.93-1.642L12 5.333 10.93 3.55A3.193 3.193 0 0 0 5 5.192ZM17 7V5.192a1.192 1.192 0 0 0-2.215-.613L13.332 7H17Zm-6.332 0L9.215 4.579A1.192 1.192 0 0 0 7 5.192V7h3.668ZM11 9v4H4V9h7Zm2 0v4h7V9h-7Zm-8 6h6v5H5v-5Zm8 0v5h6v-5h-6Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M10.883 2.72c.43-.96 1.803-.96 2.234 0l2.262 5.037 5.525.578c1.052.11 1.477 1.406.69 2.11l-4.127 3.691 1.153 5.395c.22 1.028-.89 1.828-1.808 1.303L12 18.08l-4.812 2.755c-.917.525-2.028-.275-1.808-1.303l1.153-5.395-4.127-3.691c-.786-.704-.362-2 .69-2.11l5.525-.578 2.262-5.037Z"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m13 17 9 5V2l-9 5H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3v5h2v-5h4Zm7-11.601-6 3.333v6.536l6 3.333V5.399ZM4 9h8v6H4V9Z"/></symbol>
+  <symbol id="i-prime" viewBox="0 0 24 24"><path fill="currentColor" d="M2 17V6l5 4 5-5 5 5 5-4v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-raid" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.364 16.849A1.99 1.99 0 0 0 9 18v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a1.99 1.99 0 0 0-.364-1.15l2.796-4.196A4.62 4.62 0 0 1 22 12a9.95 9.95 0 0 0-.235-2.163C20.777 5.354 16.78 2 12 2S3.223 5.354 2.234 9.837C2.081 10.534 2 11.257 2 12a4.618 4.618 0 0 1 4.568.655l2.796 4.194Zm-2.18-6.199a6.62 6.62 0 0 0-2.848-.95 8.004 8.004 0 0 1 15.328 0c-1 .094-1.976.415-2.848.951a11.72 11.72 0 0 0-9.632 0Zm8.145 1.553a9.722 9.722 0 0 0-6.659 0L11.202 16h1.596l2.531-3.797Z"/></symbol>
+  <symbol id="i-bits" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m12 22-9-8 9-13 9 13-9 8Zm-4.844-6.982-1.503-1.336L12 4.514l6.347 9.168-1.503 1.336L12 13l-4.844 2.018Z"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M11 2h2v4h7a2 2 0 0 1 2 2v14H2V8a2 2 0 0 1 2-2h7V2Zm9 6H4v4.773l1.507-1.34a3 3 0 0 1 3.986 0l1.843 1.639a1 1 0 0 0 1.328 0l1.843-1.638a3 3 0 0 1 3.986 0L20 12.774V8Zm0 7.449-2.836-2.52a1 1 0 0 0-1.328 0l-1.843 1.637a3 3 0 0 1-3.986 0l-1.843-1.638a1 1 0 0 0-1.328 0L4 15.45V20h16v-4.551Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.964 5.422A5.075 5.075 0 0 0 7.429 4H7C4.239 4 2 6.175 2 8.857v.417a4.79 4.79 0 0 0 1.464 3.434L12 21l8.535-8.292A4.788 4.788 0 0 0 22 9.274v-.417C22 6.175 19.761 4 17 4h-.429a5.076 5.076 0 0 0-3.536 1.423L12 6.429l-1.036-1.007Z"/></symbol>
+  <symbol id="i-popout" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2v2h4.586l-8.293 8.293 1.414 1.414L20 5.414V10h2V2h-8Z"/><path fill="currentColor" d="M4 4h8v2H4v14h14v-8h2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-unban" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M19.707 8.207 10 17.914l-6.207-6.207 1.414-1.414L10 15.086l8.293-8.293 1.414 1.414Z"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle fill="currentColor" cx="12" cy="5" r="2"/><circle fill="currentColor" cx="12" cy="12" r="2"/><circle fill="currentColor" cx="12" cy="19" r="2"/></symbol>
+  <symbol id="i-replyline" viewBox="0 0 24 24"><path fill="currentColor" d="M9 10h2v2H9v-2Zm6 0h-2v2h2v-2Z"/><path fill="currentColor" fill-rule="evenodd" d="m12 22-3-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4l-3 3Zm-2.172-5L12 19.172 14.172 17H19V5H5v12h4.828Z"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12Zm11 9A9 9 0 0 1 4.968 6.382l12.65 12.65A8.962 8.962 0 0 1 12 21Zm7.032-3.382a9 9 0 0 0-12.65-12.65l12.65 12.65Z"/></symbol>
+  <symbol id="i-timeout" viewBox="0 0 24 24"><path fill="currentColor" d="M13 11.586V5h-2v7.414l3.293 3.293 1.414-1.414L13 11.586Z"/><path fill="currentColor" fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12Zm11 9a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path fill="currentColor" d="M10 2h4v2h7v2H3V4h7V2ZM5 8h2v12h10V8h2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8Z"/><path fill="currentColor" d="M11 8h2v10h-2V8Z"/></symbol>
+</svg>
+
+<main class="chat-room">
+  <header class="chat-header">
+    <span>Stream Chat</span>
+    <button id="viewers" class="icon-button" title="Chat participants"><svg><use href="#i-people"/></svg></button>
+  </header>
+
+<iframe id="setup-frame" class="setup-frame" title="Setup Wizard" hidden></iframe>
+<div class="chat-body">
+  <div id="viewer-card" class="viewer-card" hidden></div>
+  <section id="messages" class="chat-scrollable-area" role="log" aria-live="polite"></section>
+  <div id="viewer-list" class="viewer-list" hidden>
+    <div class="viewer-list__head">
+      <button id="viewers-close" class="icon-button" title="Close"><svg><use href="#i-close"/></svg></button>
+      <span>USERS IN CHAT</span>
+    </div>
+    <div class="viewer-list__filter">
+      <svg viewBox="0 0 20 20"><path fill="currentColor" d="M9 3a6 6 0 1 0 3.7 10.7l3.3 3.3 1.4-1.4-3.3-3.3A6 6 0 0 0 9 3zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+      <input id="viewers-filter" type="text" placeholder="Filter" autocomplete="off" spellcheck="false">
+    </div>
+    <div id="viewers-body" class="viewer-list__body"></div>
+  </div>
+  </div>
+
+  <button id="resume" class="resume" hidden>Chat paused while scrolling</button>
+
+  <div class="chat-input">
+    <div class="above-input">
+      <div id="settings" class="settings" hidden>
+    <div class="settings__head">
+      <span>Chat Settings</span>
+      <button id="settings-close" class="round" title="Close">&times;</button>
+    </div>
+
+    <div class="settings__section">My Preferences</div>
+    <label class="row"><span>Show moderator icons</span>
+      <input type="checkbox" id="opt-badges" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show timestamps</span>
+      <input type="checkbox" id="opt-time" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show moderation actions</span>
+      <input type="checkbox" id="opt-modactions" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Automatic screen reader announcements</span>
+      <input type="checkbox" id="opt-aria" class="switch-input"><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show messages held by AutoMod categories</span>
+      <input type="checkbox" id="opt-automod-cat" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show messages held by AutoMod</span>
+      <input type="checkbox" id="opt-automod-std" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show messages held for blocked channel terms</span>
+      <input type="checkbox" id="opt-automod-terms" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Show messages held for blocked links</span>
+      <input type="checkbox" id="opt-automod-links" class="switch-input" checked><span class="switch"></span>
+    </label>
+    <label class="row"><span>Deleted Messages</span>
+      <select id="opt-deleted">
+        <option value="detail">Detailed</option>
+        <option value="brief">Brief</option>
+        <option value="hide">Hide</option>
+      </select>
+    </label>
+    <label class="row"><span>Pause Chat</span>
+      <select id="opt-pause">
+        <option value="scroll">While scrolling</option>
+        <option value="hover">While hovering</option>
+        <option value="never">Never</option>
+      </select>
+    </label>
+    <button id="open-popout" class="row row--button"><span>Pop-out Chat</span><span class="link">open &#8599;</span></button>
+
+    <div class="settings__section">Chat Appearance</div>
+    <label class="row row--range"><span>Chat Size</span>
+      <input type="range" id="opt-zoom" min="70" max="200" step="5" value="100">
+      <output id="opt-zoom-value">100%</output>
+    </label>
+    <label class="row"><span>Alternating Rows</span>
+      <input type="checkbox" id="opt-alternate" class="switch-input"><span class="switch"></span>
+    </label>
+    <label class="row"><span>Readable Name Colors</span>
+      <input type="checkbox" id="opt-readable" class="switch-input" checked><span class="switch"></span>
+    </label>
+
+    <div class="settings__section">Platforms</div>
+    <div class="filters">
+      <button class="filter is-active" data-filter="all">All</button>
+      <button class="filter" data-filter="twitch">Twitch</button>
+      <button class="filter" data-filter="tiktok">TikTok</button>
+    </div>
+    <label class="field">Twitch Channel<input id="twitch-channel" autocomplete="off" spellcheck="false"></label>
+    <label class="field">TikTok User<input id="tiktok-channel" autocomplete="off" spellcheck="false"></label>
+    <button id="save" class="chat-button wide">Save and Connect</button>
+    <p id="settings-result"></p>
+
+    <div class="settings__section">Twitch Account</div>
+    <p class="muted" id="account-state">Twitch account not connected.</p>
+    <label class="field" id="client-id-row">Twitch Application Client ID<input id="client-id" autocomplete="off" spellcheck="false" placeholder="from dev.twitch.tv/console/apps"></label>
+    <button id="connect-account" class="chat-button wide">Connect Twitch Account</button>
+    <p id="device-code" hidden></p>
+  </div>
+      <div id="emote-panel" class="emote-panel" hidden>
+    <div class="emote-search">
+      <svg viewBox="0 0 20 20" class="emote-search__icon"><path fill="currentColor" d="M9 3a6 6 0 1 0 3.7 10.7l3.3 3.3 1.4-1.4-3.3-3.3A6 6 0 0 0 9 3zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+      <input id="emote-search" type="text" placeholder="Search emotes" autocomplete="off" spellcheck="false">
+      <button id="emote-close" title="Close"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <div class="emote-body">
+      <div id="emote-grid" class="emote-grid"></div>
+      <div id="emote-rail" class="emote-rail"></div>
+    </div>
+    <p id="emote-state" class="muted"></p>
+  </div>
+      <div id="commands" class="commands" hidden></div>
+      <div id="mentions" class="commands mentions" hidden></div>
+      <div id="reauth" class="reauth" hidden>
+      <span>New Twitch permissions are required for moderation, AutoMod, the Activity feed, and channel point rewards.</span>
+      <button id="reauth-button">Reconnect</button>
+    </div>
+    </div>
+
+    <div id="reply-bar" class="reply-bar" hidden>
+      <div class="reply-bar__head">
+        <svg><use href="#i-replyline"/></svg>
+        <b id="reply-label"></b>
+        <button id="reply-cancel" class="icon-button" title="Cancel Reply"><svg><use href="#i-close"/></svg></button>
+      </div>
+      <div id="reply-quote" class="reply-bar__quote"></div>
+      <div id="thread-list" class="reply-bar__thread" hidden></div>
+      <div id="reply-footer" class="reply-bar__footer" hidden>Replying to <b id="reply-footer-name"></b><span class="dot">•</span><button id="reply-footer-cancel" class="text-button" type="button">Cancel</button></div>
+    </div>
+    <div class="chat-input__box">
+      <div id="text" contenteditable="true" role="textbox" data-placeholder="Send a message" spellcheck="false"></div>
+      <button id="emotes" class="icon-in-box" title="Emote" tabindex="-1"><svg><use href="#i-smile"/></svg></button>
+    </div>
+    <div class="chat-input__buttons">
+      <span id="dots" class="dots"></span>
+      <span class="spacer"></span>
+      <button id="settings-button" class="icon-button" title="Chat Settings"><svg><use href="#i-gear"/></svg></button>
+      <button id="send" class="chat-button">Chat</button>
+    </div>
+  </div>
+
+  <div id="context-menu" class="context-menu" hidden>
+    <button data-action="delete">Delete Message</button>
+    <button data-action="timeout">Timeout for 10 Minutes</button>
+    <button data-action="ban">Permanent Ban</button>
+  </div>
+</main>
+
+<script src="/app.js"></script>
+<script src="/emotes.js"></script>
+</body>
+</html>
