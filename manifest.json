@@ -1,10 +1,10 @@
 {
-    "version":  "0.3.6",
+    "version":  "0.3.7",
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "8430cbe94dd2115ef1cc181facb0f9a51fcbee0375509bc9c7e6d2b2f3d4e816",
-                      "size":  501760
+                      "sha256":  "25359039152d0150de0eb29efb5707f9e3dd4893401ecd58c13769213a1c3a4f",
+                      "size":  509440
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -13,8 +13,8 @@
                   },
                   {
                       "path":  "data/web/app.js",
-                      "sha256":  "d4fa45553e3dcf32afda7fee50951d1c6f766b148eb9c49ea180f1c4323d5f28",
-                      "size":  71101
+                      "sha256":  "d2c9558a5bf68d5100c0b368518c918f1f17999056ce96755816f053650ae246",
+                      "size":  97004
                   },
                   {
                       "path":  "data/web/emotes.js",
@@ -23,8 +23,8 @@
                   },
                   {
                       "path":  "data/web/feed.css",
-                      "sha256":  "4dd56daad8a4fed51af479fe054d372923c8c85157f882abe2eeafb887ef7b3c",
-                      "size":  38453
+                      "sha256":  "50fc7e29e1335640e8051ba122a5f3cdebc2fd534443f819c9b8e579cc3a5052",
+                      "size":  38190
                   },
                   {
                       "path":  "data/web/feed.html",
@@ -33,23 +33,58 @@
                   },
                   {
                       "path":  "data/web/feed.js",
-                      "sha256":  "d8034aec8acb40996019ead9fd6e6cbc3b64424dabf7896db1169acec1524604",
-                      "size":  34068
+                      "sha256":  "8eceec2ef09b5caf976a4ac715e893e9dd6267fc7f5418474cdee1264c774ba0",
+                      "size":  34839
                   },
                   {
                       "path":  "data/web/fonts-OFL.txt",
-                      "sha256":  "b6b056f62ab7b90795b9328d8f3774c676f89876d84daf487f3632f60459da81",
-                      "size":  4955
+                      "sha256":  "89d33645911df067955ea9e06509c18b7f7a7d8544942c75836cda791eb6c73a",
+                      "size":  5237
                   },
                   {
                       "path":  "data/web/index.html",
-                      "sha256":  "f22f7ea1265233334e7877add39786fa7ca6816134dfe0e9fe2563a7e80f3fa9",
-                      "size":  15920
+                      "sha256":  "5a0cd7687815bde27bef8311ac98a519e425f3abf8053dd542b5959c4ae76962",
+                      "size":  18593
                   },
                   {
                       "path":  "data/web/inter.woff2",
                       "sha256":  "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
                       "size":  48256
+                  },
+                  {
+                      "path":  "data/web/inter-cyrillic.woff2",
+                      "sha256":  "44dad9f4b5fa756012db12dae57c0c691e2ab717639956bdac4f308b58174c35",
+                      "size":  17016
+                  },
+                  {
+                      "path":  "data/web/inter-cyrillic-ext.woff2",
+                      "sha256":  "759f394cae8ddff59d991e622b5c4449142b96a35648a40ac6da8980d7273f05",
+                      "size":  26952
+                  },
+                  {
+                      "path":  "data/web/inter-greek.woff2",
+                      "sha256":  "f7f0f20d3474118c65819d604cdb8ca2000f3951c1466ba3482bf80a6c21323e",
+                      "size":  22516
+                  },
+                  {
+                      "path":  "data/web/inter-greek-ext.woff2",
+                      "sha256":  "cb97f503c2af0d106f1cc30a4ffd78341d8dfb6278d629abbde4484159d92483",
+                      "size":  11412
+                  },
+                  {
+                      "path":  "data/web/inter-latin.woff2",
+                      "sha256":  "f6789b1579e3915acc50ce2f56d956c05dc3186238eb4d1a0d4ad1e403a625ac",
+                      "size":  37056
+                  },
+                  {
+                      "path":  "data/web/inter-latin-ext.woff2",
+                      "sha256":  "4d72155967d9a17d9aeaa7644f85f362257372842df094ae7ae9aad643a2ea33",
+                      "size":  57908
+                  },
+                  {
+                      "path":  "data/web/inter-vietnamese.woff2",
+                      "sha256":  "913342cd5c6fa7132e6dfdc64dfe79a6a63e737c0b0e3336fb7e518b701e9e5f",
+                      "size":  8892
                   },
                   {
                       "path":  "data/web/jetbrains-mono.woff2",
@@ -78,8 +113,8 @@
                   },
                   {
                       "path":  "data/web/style.css",
-                      "sha256":  "5369003cd5eb34aba3052db007ee264fe0f86c88ce0837fc307ad6b098d9e1b2",
-                      "size":  33136
+                      "sha256":  "f35ccb7aaf2d582d45ead76ca625b2e41049f91764ab388a65f5b435b331a24a",
+                      "size":  53843
                   }
               ]
 }
