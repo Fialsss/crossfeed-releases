@@ -1,10 +1,10 @@
 {
-    "version":  "0.3.7",
+    "version":  "0.3.9",
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "25359039152d0150de0eb29efb5707f9e3dd4893401ecd58c13769213a1c3a4f",
-                      "size":  509440
+                      "sha256":  "9aa7d3479cf170f6f69a88c3ea0c4330dc25730aff373f56f0f1f6b4ae84118f",
+                      "size":  524288
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -13,8 +13,8 @@
                   },
                   {
                       "path":  "data/web/app.js",
-                      "sha256":  "d2c9558a5bf68d5100c0b368518c918f1f17999056ce96755816f053650ae246",
-                      "size":  97004
+                      "sha256":  "f22c7c05aa6a9eedea9bb715846ecda22030981ec876b3e22fe30e7f3416ca06",
+                      "size":  130297
                   },
                   {
                       "path":  "data/web/emotes.js",
@@ -33,8 +33,8 @@
                   },
                   {
                       "path":  "data/web/feed.js",
-                      "sha256":  "8eceec2ef09b5caf976a4ac715e893e9dd6267fc7f5418474cdee1264c774ba0",
-                      "size":  34839
+                      "sha256":  "3b6270d73acb5259060e88bf4def5433cc4c263e3852d174bb0daeee26b2308c",
+                      "size":  34193
                   },
                   {
                       "path":  "data/web/fonts-OFL.txt",
@@ -43,8 +43,8 @@
                   },
                   {
                       "path":  "data/web/index.html",
-                      "sha256":  "5a0cd7687815bde27bef8311ac98a519e425f3abf8053dd542b5959c4ae76962",
-                      "size":  18593
+                      "sha256":  "baa470bc9aea015f1848dc34423060e1c88c0c8d5ed2c02a30a83df78f1cdf7a",
+                      "size":  20830
                   },
                   {
                       "path":  "data/web/inter.woff2",
@@ -113,8 +113,8 @@
                   },
                   {
                       "path":  "data/web/style.css",
-                      "sha256":  "f35ccb7aaf2d582d45ead76ca625b2e41049f91764ab388a65f5b435b331a24a",
-                      "size":  53843
+                      "sha256":  "0c7f30c651b91f2d053501acc6e469ff26dfb5639541abd54d482962ded4bb81",
+                      "size":  67927
                   }
               ]
 }
