@@ -36,10 +36,10 @@ Requires Windows 10 or 11 (x64) and OBS Studio 30.0.2 or later, installed normal
 
 ## Updates
 
-Crossfeed checks `manifest.json` in this repository once a day and downloads only the files that changed, from the folder of the new version. Each file is checked against its SHA-256 before anything is written.
+Every time OBS starts, Crossfeed checks `manifest.json` in this repository and downloads only the files that changed, from the folder of the new version. Each file is checked against its SHA-256 before anything is written.
 
-The new version starts the next time OBS starts. Until then, the version you are running keeps working as it was.
+A window then tells you that the new version is ready, lists what changed, and restarts OBS for you with one click. Until OBS restarts, the version you are running keeps working as it was. **Crossfeed → Check for Updates** shows *Latest* or *New update*, and **Crossfeed → What's New** lists the changes of each version.
 
 If Crossfeed asks you to **Reconnect** Twitch after an update, everything else keeps working. The new permission is only for the new features.
 
-To turn updates off, clear **Crossfeed → Automatic Updates**. **Crossfeed → Check for Updates** checks right away.
+To stop downloading on your own, clear **Crossfeed → Automatic Updates**: Crossfeed still tells you when a new version exists. **Crossfeed → Check for Updates** checks right away.

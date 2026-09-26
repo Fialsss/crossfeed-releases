@@ -1,0 +1,34 @@
+/* Window of updates and "What's New": the setup wizard's tokens and buttons (setup.css), plus the version tag,
+   the mono eyebrow and the notes of each version. */
+.tag {
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font: 600 10.5px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.tag.is-new { background: #fff; border-color: #fff; color: var(--s0); }
+.tag.is-latest { color: var(--ok); border-color: rgba(61, 220, 151, 0.35); }
+
+.view { padding-top: 26px; }
+.eyebrow { font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+.view h1 + .lead { margin-top: 6px; }
+
+.notes { margin-top: 22px; display: grid; gap: 18px; }
+.notes:empty { display: none; }
+.release { border-top: 1px solid var(--line-2); padding-top: 14px; animation: rise 0.3s var(--e-out) both; }
+.release:first-child { border-top: 0; padding-top: 0; }
+.release:nth-child(2) { animation-delay: 0.05s; }
+.release:nth-child(3) { animation-delay: 0.1s; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+.release__version { font: 500 11px var(--mono); letter-spacing: 0.06em; color: var(--ink-3); }
+.release h3 { margin: 12px 0 6px; font: 600 11px var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.release ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.release li { position: relative; padding-left: 16px; color: var(--ink-2); }
+.release li::before { content: ''; position: absolute; left: 3px; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink-3); }
+.release li b, .release p b { color: var(--ink); font-weight: 600; }
+.release p { margin-top: 8px; }
+.btn[hidden] { display: none; }

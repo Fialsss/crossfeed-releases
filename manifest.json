@@ -1,10 +1,24 @@
 {
-    "version":  "0.3.9",
+    "version":  "0.3.10",
+    "notes":  [
+                  {
+                      "version":  "0.3.10",
+                      "text":  "### New\n- **Update notices**: when OBS starts, Crossfeed tells you when a new version is ready, with a button to restart OBS right away. The notice never takes the keyboard, so typing in the chat can\u0027t close it or restart OBS.\n- **Latest** or **New update** next to Crossfeed → Check for Updates, so you always know where you are.\n- **What\u0027s New**: after an update, a window shows what changed. Open it again any time from Crossfeed → What\u0027s New.\n- Crossfeed checks for updates every time OBS starts, instead of once a day."
+                  },
+                  {
+                      "version":  "0.3.9",
+                      "text":  "### New\n- **Twitch\u0027s highlights at the top of the chat**: gift banners, polls, predictions, the Hype Train and pinned messages, like Twitch\u0027s own chat.\n- The Twitch and TikTok icons in front of the names look like Twitch\u0027s badges.\n\n### Fixed\n- **A new version never stops the one you are running**: updates switch when OBS restarts, pages and plugin together.\n- Follows, channel point rewards, AutoMod and the users in chat keep working when a new version needs a Twitch permission you have not given yet. Reconnect only adds what is missing.\n- /demo shows who received the gifted subs, one line each."
+                  },
+                  {
+                      "version":  "0.3.7",
+                      "text":  "### New\n- **The chat looks like Twitch\u0027s own chat**: fonts, spacing, badges, cards, replies and deleted messages.\n- **Moderator icons on hover** (Ban, Timeout, Warn, Delete), in a bar that opens just outside the message.\n- **Chat Style: Multistream**, a compact dark chat with live viewer counters per platform.\n\n### Fixed\n- Chat Size other than 100% no longer misplaces the moderator bar.\n- The Activity dock works on OBS 30.\n- /demo never sends anything to Twitch."
+                  }
+              ],
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "9aa7d3479cf170f6f69a88c3ea0c4330dc25730aff373f56f0f1f6b4ae84118f",
-                      "size":  524288
+                      "sha256":  "8e51f9983fd441411040dc3eda06db34069be42d174a08098f98de1781102c48",
+                      "size":  549888
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -13,8 +27,8 @@
                   },
                   {
                       "path":  "data/web/app.js",
-                      "sha256":  "f22c7c05aa6a9eedea9bb715846ecda22030981ec876b3e22fe30e7f3416ca06",
-                      "size":  130297
+                      "sha256":  "c0926df8130e572bbdae2f2c1771e2e7df38776cd2122b897c950b2d1e9a6401",
+                      "size":  132804
                   },
                   {
                       "path":  "data/web/emotes.js",
@@ -33,8 +47,8 @@
                   },
                   {
                       "path":  "data/web/feed.js",
-                      "sha256":  "3b6270d73acb5259060e88bf4def5433cc4c263e3852d174bb0daeee26b2308c",
-                      "size":  34193
+                      "sha256":  "e035bfc47086dec263f7072e38c8f35d3cc03531fae1428f3b63cd2cdea6c007",
+                      "size":  34840
                   },
                   {
                       "path":  "data/web/fonts-OFL.txt",
@@ -113,8 +127,23 @@
                   },
                   {
                       "path":  "data/web/style.css",
-                      "sha256":  "0c7f30c651b91f2d053501acc6e469ff26dfb5639541abd54d482962ded4bb81",
-                      "size":  67927
+                      "sha256":  "67484b6bcbdf431921fccee893dd70ba6925dcc08cd763ef1a0433672824dca8",
+                      "size":  69467
+                  },
+                  {
+                      "path":  "data/web/update.css",
+                      "sha256":  "cbf76e4ee52e8996653cd557e2b1e4ebc9ebfa00f10b6d0976d89f4d38da35ed",
+                      "size":  1835
+                  },
+                  {
+                      "path":  "data/web/update.html",
+                      "sha256":  "e28b89e939b89d324e936e9c0d08a949de367f3b0dccd79de862ab4877402acf",
+                      "size":  1565
+                  },
+                  {
+                      "path":  "data/web/update.js",
+                      "sha256":  "cdf49bb0dde33bb63b95d91a55aed434fdc0172fda3095322da600f00409fb34",
+                      "size":  6235
                   }
               ]
 }
