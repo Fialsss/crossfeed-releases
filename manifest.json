@@ -1,6 +1,10 @@
 {
-    "version":  "0.3.10",
+    "version":  "0.3.11",
     "notes":  [
+                  {
+                      "version":  "0.3.11",
+                      "text":  "### New\n- **Replay buffer notifications**: a small banner in the top-right corner of the screen, like ShadowPlay\u0027s, when the replay buffer starts, saves a replay or stops. It never takes the focus from your game and clicks go through it. Turn it off from Crossfeed → Replay Buffer Notifications, or in the Setup Wizard, which shows all three banners.\n\n### Fixed\n- The **Setup Wizard** moves on as soon as you press Next after entering a channel: saving and reconnecting the chats now happens in the background."
+                  },
                   {
                       "version":  "0.3.10",
                       "text":  "### New\n- **Update notices**: when OBS starts, Crossfeed tells you when a new version is ready, with a button to restart OBS right away. The notice never takes the keyboard, so typing in the chat can\u0027t close it or restart OBS.\n- **Latest** or **New update** next to Crossfeed → Check for Updates, so you always know where you are.\n- **What\u0027s New**: after an update, a window shows what changed. Open it again any time from Crossfeed → What\u0027s New.\n- Crossfeed checks for updates every time OBS starts, instead of once a day."
@@ -17,8 +21,8 @@
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "8e51f9983fd441411040dc3eda06db34069be42d174a08098f98de1781102c48",
-                      "size":  549888
+                      "sha256":  "3fb0fb2bc14420e1e6b05926af2a86c6699a617d6123bdb66a46409e336e3db1",
+                      "size":  569344
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -112,18 +116,18 @@
                   },
                   {
                       "path":  "data/web/setup.css",
-                      "sha256":  "7b35b50a25635bf33dd78d08823afe9b55e74b8330de3e742bf72c127e4bc6cd",
-                      "size":  17021
+                      "sha256":  "bff93b7b297f66bb0ca777143ba01289867883d8f1ad65a91bc4fb235129b392",
+                      "size":  19399
                   },
                   {
                       "path":  "data/web/setup.html",
-                      "sha256":  "35db51b189f6413f23b47b3a38ffd9c46b45e378d6c560afb5bd0ce0a338caa4",
-                      "size":  4898
+                      "sha256":  "48e2f9640da46f7bffc5470ab2670d56ad78a8a30e20c54c7d8a959fc4d33b8e",
+                      "size":  5088
                   },
                   {
                       "path":  "data/web/setup.js",
-                      "sha256":  "bd230b886bb341a51a71426aa96e82953ac8cabdf94f16a5abb17a3fc9e3e249",
-                      "size":  22935
+                      "sha256":  "f958a1a9a29f1b805cd7937758ab0f8e77916de2811aab708a07be7b4edc9be9",
+                      "size":  27770
                   },
                   {
                       "path":  "data/web/style.css",

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crossfeed · Twitch connection</title>
+<style>
+  body { margin: 0; height: 100vh; display: grid; place-items: center; background: #0e0e10;
+         color: #efeff1; font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .card { text-align: center; max-width: 420px; padding: 32px; }
+  h1 { font-size: 20px; margin: 0 0 8px; }
+  p { color: #adadb8; line-height: 22px; }
+  .ok { color: #00f593; }
+  .ko { color: #ff7a45; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Crossfeed</h1>
+  <p id="state">Connecting…</p>
+</div>
+<script>
+// Twitch rimanda il token nel frammento dell'indirizzo: il frammento non viaggia in rete,
+// lo legge questa pagina e lo passa al plugin che gira in locale.
+const params = new URLSearchParams(location.hash.slice(1));
+const token = params.get('access_token');
+const state = document.getElementById('state');
+
+if (!token) {
+  state.className = 'ko';
+  state.textContent = params.get('error_description') || 'Authorization cancelled.';
+} else {
+  fetch('/api/token', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({token}),
+  })
+    .then(r => r.json())
+    .then(result => {
+      history.replaceState(null, '', location.pathname); // via il token dalla barra degli indirizzi
+      if (result.error) {
+        state.className = 'ko';
+        state.textContent = result.error;
+      } else {
+        state.className = 'ok';
+        state.textContent = `Connected as ${result.login}. You can close this tab and return to OBS.`;
+      }
+    })
+    .catch(() => {
+      state.className = 'ko';
+      state.textContent = 'OBS is not responding. Is it still open?';
+    });
+}
+</script>
+</body>
+</html>
