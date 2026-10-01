@@ -1,6 +1,10 @@
 {
-    "version":  "0.3.11",
+    "version":  "0.3.12",
     "notes":  [
+                  {
+                      "version":  "0.3.12",
+                      "text":  "### Changed\n- **Automatic Game Capture is now OBS\u0027s own method**: Crossfeed just sets your Game Capture sources to \"Capture any fullscreen application\", with the game\u0027s audio. It never reads or touches your games, so it is safe with anti-cheat (BattlEye, EAC).\n\n### Fixed\n- **Replay buffer notifications are only for you**: the banner no longer shows up in your stream, in recordings or in saved clips. It stays visible on your screen (Windows 10 version 2004 or later).\n- **Chat comes back after you restart your LIVE**: TikTok chat, joins, gifts and follows now reconnect within seconds when you end the LIVE and start it again. Twitch chat and events also reconnect on their own after a network drop or sleep."
+                  },
                   {
                       "version":  "0.3.11",
                       "text":  "### New\n- **Replay buffer notifications**: a small banner in the top-right corner of the screen, like ShadowPlay\u0027s, when the replay buffer starts, saves a replay or stops. It never takes the focus from your game and clicks go through it. Turn it off from Crossfeed → Replay Buffer Notifications, or in the Setup Wizard, which shows all three banners.\n\n### Fixed\n- The **Setup Wizard** moves on as soon as you press Next after entering a channel: saving and reconnecting the chats now happens in the background."
@@ -21,8 +25,8 @@
     "files":  [
                   {
                       "path":  "bin/64bit/crossfeed.dll",
-                      "sha256":  "3fb0fb2bc14420e1e6b05926af2a86c6699a617d6123bdb66a46409e336e3db1",
-                      "size":  569344
+                      "sha256":  "e089675c12895a82242f5a55a755b7f540d0867f53100738a2fcb9386c9773c8",
+                      "size":  549376
                   },
                   {
                       "path":  "data/locale/en-US.ini",
@@ -126,8 +130,8 @@
                   },
                   {
                       "path":  "data/web/setup.js",
-                      "sha256":  "f958a1a9a29f1b805cd7937758ab0f8e77916de2811aab708a07be7b4edc9be9",
-                      "size":  27770
+                      "sha256":  "b5faca1aab2293d6b9a04cde22f2c92eb8a76539ffb3bc9afab74c8f5fda48d3",
+                      "size":  27731
                   },
                   {
                       "path":  "data/web/style.css",
@@ -136,18 +140,18 @@
                   },
                   {
                       "path":  "data/web/update.css",
-                      "sha256":  "cbf76e4ee52e8996653cd557e2b1e4ebc9ebfa00f10b6d0976d89f4d38da35ed",
-                      "size":  1835
+                      "sha256":  "bf41a5687620784d3991f8a3278d62b278e5544777502f06239c16f943830741",
+                      "size":  1869
                   },
                   {
                       "path":  "data/web/update.html",
-                      "sha256":  "e28b89e939b89d324e936e9c0d08a949de367f3b0dccd79de862ab4877402acf",
-                      "size":  1565
+                      "sha256":  "801a1018780bdc9a44d883a32787664ab08d8028ebfc7d309aecaf2df996a366",
+                      "size":  1606
                   },
                   {
                       "path":  "data/web/update.js",
-                      "sha256":  "cdf49bb0dde33bb63b95d91a55aed434fdc0172fda3095322da600f00409fb34",
-                      "size":  6235
+                      "sha256":  "b86401fc2e54d53adb5da56de78b210f7ae788d59132cc31d3d3c36bc70f7f66",
+                      "size":  6384
                   }
               ]
 }
